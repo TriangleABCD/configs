@@ -24,8 +24,7 @@ vim.cmd([[
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- Recommended, not required.
+  use { 'nvim-treesitter/nvim-treesitter', branch = 'master', run = ':TSUpdate' } -- Recommended, not required.
   use {
     'daltonmenezes/aura-theme',
     rtp = 'packages/neovim',
@@ -38,24 +37,20 @@ return require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',  -- 状态栏
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }  -- 状态栏图标
   }
-
   use {
     'nvim-tree/nvim-tree.lua',  -- 文档树
     requires = {
       'nvim-tree/nvim-web-devicons', -- 文档树图标
     }
   }
-
   use "christoomey/vim-tmux-navigator" -- 用ctl-hjkl来定位窗口
   use "p00f/nvim-ts-rainbow" -- 配合treesitter，不同括号颜色区分
-
   use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",  -- 这个相当于mason.nvim和lspconfig的桥梁
+    "mason-org/mason.nvim",
+    "mason-org/mason-lspconfig.nvim",  -- 这个相当于mason.nvim和lspconfig的桥梁
     "neovim/nvim-lspconfig"
   }
-
-  -- 自动补全
+    -- 自动补全
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
   use "L3MON4D3/LuaSnip" -- snippets引擎，不装这个自动补全会出问题
@@ -68,13 +63,15 @@ return require('packer').startup(function(use)
 
   use "akinsho/bufferline.nvim" -- buffer分割线
   use "lewis6991/gitsigns.nvim" -- 左则git提示
+
   use {
-    'nvim-telescope/telescope.nvim',  -- 文件检索
+    'nvim-telescope/telescope.nvim', tag = '0.1.4',  -- 文件检索
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-
-  use "mg979/vim-visual-multi" -- 多光标
+  use "skywind3000/vim-terminal-help"
   use 'ethanholz/nvim-lastplace'
+  use "mg979/vim-visual-multi"
+  use 'voldikss/vim-floaterm'
 
   if packer_bootstrap then
     require('packer').sync()
